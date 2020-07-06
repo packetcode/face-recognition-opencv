@@ -2,7 +2,7 @@ import cv2
 import os
 
 faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-video_capture = cv2.VideoCapture(0)
+# video_capture = cv2.VideoCapture(0)
 
 # Call the trained model yml file to recognize faces
 recognizer = cv2.face.LBPHFaceRecognizer_create()
@@ -13,9 +13,11 @@ names = []
 for users in os.listdir("dataset"):
     names.append(users)
 
+img = cv2.imread("test/chris.jpeg")
+
 while True:
 
-    _, img = video_capture.read()
+    # _, img = video_capture.read()
 
     gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -29,7 +31,6 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         id, _ = recognizer.predict(gray_image[y : y + h, x : x + w])
-
         if id:
             cv2.putText(
                 img,
@@ -58,5 +59,5 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
-video_capture.release()
+# video_capture.release()
 cv2.destroyAllWindows()

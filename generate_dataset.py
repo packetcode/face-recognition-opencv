@@ -33,9 +33,6 @@ while True:
     # Capture the frame/image
     _, img = vc.read()
 
-    # assign the image to a variable called original_img to later save it
-    original_img = img.copy()
-
     # Get the gray version of our image
     gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -61,7 +58,7 @@ while True:
         # If count is less than 5 then save the image
         if count <= 5:
             roi_img = img[coords[1] : coords[1] + coords[3], coords[0] : coords[0] + coords[2]]
-            saveImage(original_img, userName, userId, count)
+            saveImage(roi_img, userName, userId, count)
             count += 1
         else:
             break
