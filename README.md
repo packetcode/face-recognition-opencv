@@ -1,4 +1,4 @@
-#FAQ : cv2.putText()
+# FAQ : cv2.putText()
 
 The syntax is
 
